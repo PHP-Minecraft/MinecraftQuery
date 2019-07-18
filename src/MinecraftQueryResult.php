@@ -37,8 +37,8 @@ class MinecraftQueryResult
 		int $maxPlayers,
 		array $playersSample,
 		string $messageOfTheDay,
-		string $favicon,
-		int $latency
+		int $latency,
+		?string $favicon
 	) {
 		$this->version = $version;
 		$this->protocolVersion = $protocolVersion;
@@ -46,8 +46,8 @@ class MinecraftQueryResult
 		$this->maxPlayers = $maxPlayers;
 		$this->playersSample = $playersSample;
 		$this->messageOfTheDay = $messageOfTheDay;
-		$this->favicon = $favicon;
 		$this->latency = $latency;
+		$this->favicon = $favicon;
 	}
 
 	public function getVersion(): string
