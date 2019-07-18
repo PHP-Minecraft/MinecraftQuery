@@ -134,6 +134,8 @@ class MinecraftQueryResolver
 	 */
 	public function retrieveDataPre17(): void
 	{
+		$timeStart = microtime(true);
+
 		$socket = $this->createSocket();
 
 		fwrite($socket, "\xFE\x01");
@@ -146,6 +148,9 @@ class MinecraftQueryResolver
 
 		$data = substr($data, 3 );
 		$data = iconv('UTF-16BE', 'UTF-8', $data);
+
+		fclose($socket);
+		$timeEnd = microtime(true);
 
 		if ($data[1] === "\xA7" && $data[2] === "\x31") {
 			$data = explode("\x00", $data);
@@ -178,6 +183,8 @@ class MinecraftQueryResolver
 				]
 			];
 		}
+
+		$this->rawData['latency'] = $timeEnd - $timeStart;
 	}
 
 	/**
