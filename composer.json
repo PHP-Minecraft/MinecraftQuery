@@ -1,0 +1,14 @@
+{
+    "name": "php-minecraft/minecraft-query",
+    "description": "Minecraft library for retrieving server data (players, motd, favicon..)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rixafy",
+            "email": "rixafy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
