@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PHPMinecraft\MinecraftQuery;
 
+use PHPMinecraft\MinecraftQuery\Exception\MinecraftQueryException;
+
 class MinecraftQueryResolver
 {
 	/** @var string */

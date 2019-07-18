@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPMinecraft\MinecraftQuery;
+namespace PHPMinecraft\MinecraftQuery\Exception;
 
 use Exception;
 
