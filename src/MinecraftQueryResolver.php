@@ -141,7 +141,7 @@ class MinecraftQueryResolver
 			throw new MinecraftQueryException(sprintf('JsonException, server sent invalid json (%s)', $e->getMessage()));
 		}
 
-		$this->rawData['latency'] = (int) ($timeEnd - $timeStart);
+		$this->rawData['latency'] = (int) ($timeEnd * 1000 - $timeStart * 1000);
 	}
 
 	/**
@@ -199,7 +199,7 @@ class MinecraftQueryResolver
 			];
 		}
 
-		$this->rawData['latency'] = (int) ($timeEnd - $timeStart);
+		$this->rawData['latency'] = (int) ($timeEnd * 1000 - $timeStart * 1000);
 	}
 
 	/**
