@@ -47,18 +47,22 @@ class MinecraftQueryResolver
 	/**
 	 * @throws MinecraftQueryException
 	 */
-	public function getResult(): MinecraftQueryResult
+	public function getResult(bool $tryOldQueryProtocolPre17 = false): MinecraftQueryResult
 	{
-		return MinecraftQueryResult::fromRawData($this->getRawData());
+		return MinecraftQueryResult::fromRawData($this->getRawData($tryOldQueryProtocolPre17));
 	}
 
 	/**
 	 * @throws MinecraftQueryException
 	 */
-	public function getRawData(): array
+	public function getRawData(bool $tryOldQueryProtocolPre17 = false): array
 	{
 		if ($this->rawData === null) {
 			$this->retrieveData();
+		}
+
+		if ($tryOldQueryProtocolPre17 && $this->rawData === null) {
+			$this->retrieveDataPre17();
 		}
 
 		return $this->rawData;
