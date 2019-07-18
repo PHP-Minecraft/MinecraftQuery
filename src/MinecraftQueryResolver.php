@@ -31,6 +31,21 @@ class MinecraftQueryResolver
 		}
 	}
 
+	public static function fromAddress(string $host, $timeout = 2, $resolveSRV = true): self
+	{
+		$addressParts = explode(':', $host);
+		$host = $addressParts[0];
+
+		if (count($addressParts) > 1) {
+			$port = (int) $addressParts[1];
+
+		} else {
+			$port = 25565;
+		}
+
+		return new MinecraftQueryResolver($host, $port, $timeout, $resolveSRV);
+	}
+
 	/**
 	 * @throws MinecraftQueryException
 	 */
