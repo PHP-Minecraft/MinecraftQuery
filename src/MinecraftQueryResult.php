@@ -89,4 +89,18 @@ class MinecraftQueryResult
 	{
 		return $this->latency;
 	}
+	
+	public static function fromRawData(array $rawData): self
+	{
+		return new MinecraftQueryResult(
+			isset($rawData['version']['name']) ? $rawData['version']['name'] : 'Unknown version',
+			isset($rawData['version']['protocol']) ? (int) $rawData['version']['protocol'] : 0,
+			isset($rawData['players']['online']) ? (int) $rawData['players']['online'] : 0,
+			isset($rawData['players']['max']) ? (int) $rawData['players']['max'] : 0,
+			isset($rawData['players']['sample']) ? (array) $rawData['players']['sample'] : [],
+			isset($rawData['description']['text']) ? (string) $rawData['description']['text'] : '',
+			$rawData['latency'],
+			isset($rawData['favicon']) ? (string) $rawData['favicon'] : null
+		);
+	}
 }
