@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace PHPMinecraft\MinecraftQuery;
 
-use JsonException;
-
 class MinecraftQueryResolver
 {
 	/** @var string */
@@ -122,10 +120,14 @@ class MinecraftQueryResolver
 			throw new MinecraftQueryException('Server did not return any data');
 		}
 
-		try {
-			$this->rawData = (array) json_decode($jsonData, true, 512, JSON_THROW_ON_ERROR);
-		} catch (JsonException $e) {
-			throw new MinecraftQueryException(sprintf('JsonException, server sent invalid json (%s)', $e->getMessage()));
+		$this->rawData = (array) json_decode($jsonData, true);
+
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			if (function_exists('json_last_error_msg')) {
+				throw new MinecraftQueryException(json_last_error_msg());
+			} else {
+				throw new MinecraftQueryException( 'JsonException, server sent invalid json');
+			}
 		}
 
 		$this->rawData['latency'] = (int) ($timeEnd * 1000 - $timeStart * 1000);
