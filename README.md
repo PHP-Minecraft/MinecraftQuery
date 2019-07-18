@@ -63,7 +63,7 @@ $result->getFavicon() // string or null
 $resolver = MinecraftQueryResolver::fromAddress('play.minecord.net');
 
 // use this method if you want raw data in array retrieved from minecraft server
-$rawData = $resolver->getRawData()
+$rawData = $resolver->getRawData();
 
 // use this method if you want construct MinecraftQueryResult from raw data
 $result = MinecraftQueryResult::fromRawData($rawData);
