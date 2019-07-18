@@ -62,8 +62,8 @@ class MinecraftQueryResolver
 			isset($this->rawData['players']['max']) ? (int) $this->rawData['players']['max'] : 0,
 			isset($this->rawData['players']['sample']) ? (array) $this->rawData['players']['sample'] : [],
 			isset($this->rawData['description']['text']) ? (string) $this->rawData['description']['text'] : '',
+			$this->rawData['latency'],
 			isset($this->rawData['favicon']) ? (string) $this->rawData['favicon'] : null,
-			$this->rawData['latency']
 		);
 	}
 
