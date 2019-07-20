@@ -9,7 +9,6 @@ composer require php-minecraft/minecraft-query
 
 # Example usage
 
-Use this PHP code before examples
 ```PHP
 declare(strict_types=1);
 
@@ -69,4 +68,4 @@ $rawData = $resolver->getRawData();
 $result = MinecraftQueryResult::fromRawData($rawData);
 ```
 
-Library is inspired by xPaw/PHP-Minecraft-Query (sockets, not code style 🤣)
+Library (socket logic) is inspired by xPaw/PHP-Minecraft-Query
