@@ -132,7 +132,7 @@ class MinecraftQueryResolver
 			if (function_exists('json_last_error_msg')) {
 				throw new MinecraftQueryException(json_last_error_msg());
 			} else {
-				throw new MinecraftQueryException( 'JsonException, server sent invalid json');
+				throw new MinecraftQueryException('JsonException, server sent invalid json');
 			}
 		}
 
