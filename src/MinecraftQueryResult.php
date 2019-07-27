@@ -92,7 +92,7 @@ class MinecraftQueryResult
 	
 	public static function fromRawData(array $rawData): self
 	{
-		return new MinecraftQueryResult(
+		return new self(
 			isset($rawData['version']['name']) ? $rawData['version']['name'] : 'Unknown version',
 			isset($rawData['version']['protocol']) ? (int) $rawData['version']['protocol'] : 0,
 			isset($rawData['players']['online']) ? (int) $rawData['players']['online'] : 0,

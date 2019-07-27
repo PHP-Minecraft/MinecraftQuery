@@ -43,7 +43,7 @@ class MinecraftQueryResolver
 			$port = 25565;
 		}
 
-		return new MinecraftQueryResolver($host, $port, $timeout, $resolveSRV);
+		return new self($host, $port, $timeout, $resolveSRV);
 	}
 
 	/**
