@@ -60,7 +60,13 @@ class MinecraftQueryResolver
 	public function getRawData(bool $tryOldQueryProtocolPre17 = false): array
 	{
 		if ($this->rawData === null) {
-			$this->retrieveData();
+			try {
+				$this->retrieveData();
+			} catch (MinecraftQueryException $e) {
+				if (!$tryOldQueryProtocolPre17) {
+					throw $e;
+				}
+			}
 		}
 
 		if ($tryOldQueryProtocolPre17 && $this->rawData === null) {
