@@ -114,6 +114,10 @@ class MinecraftQueryResolver
 			}
 
 			$remainder = $length - strlen($jsonData);
+			if ($remainder <= 0) {
+				throw new MinecraftQueryException('Incorrect socket length');
+			}
+
 			$block = fread($socket, $remainder);
 
 			if (!$block) {
