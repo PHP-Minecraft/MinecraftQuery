@@ -99,7 +99,7 @@ class MinecraftQueryResult
 			isset($rawData['players']['max']) ? (int) $rawData['players']['max'] : 0,
 			isset($rawData['players']['sample']) ? (array) $rawData['players']['sample'] : [],
 			isset($rawData['description']['text']) ? (string) $rawData['description']['text'] : '',
-			$rawData['latency'],
+			(int) $rawData['latency'],
 			isset($rawData['favicon']) ? (string) $rawData['favicon'] : null
 		);
 	}
