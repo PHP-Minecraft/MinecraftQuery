@@ -159,7 +159,12 @@ class MinecraftQueryResolver
 		$socket = $this->createSocket();
 
 		fwrite($socket, "\xFE\x01");
+		
 		$data = fread($socket, 512);
+		if (!$data) {
+			throw new MinecraftQueryException('Server returned invalid data');
+		}
+		
 		$len = strlen($data);
 
 		if ($len < 4 || $data[0] !== "\xFF") {
