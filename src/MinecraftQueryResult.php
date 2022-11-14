@@ -89,7 +89,7 @@ class MinecraftQueryResult
 	{
 		return $this->latency;
 	}
-	
+
 	public static function fromRawData(array $rawData): self
 	{
 		return new self(
@@ -98,9 +98,25 @@ class MinecraftQueryResult
 			isset($rawData['players']['online']) ? (int) $rawData['players']['online'] : 0,
 			isset($rawData['players']['max']) ? (int) $rawData['players']['max'] : 0,
 			isset($rawData['players']['sample']) ? (array) $rawData['players']['sample'] : [],
-			isset($rawData['description']['text']) ? (string) $rawData['description']['text'] : '',
+			isset($rawData['description']) ? (is_array($rawData['description']) ? self::readMessageOfTheDay($rawData['description']) : (string) $rawData['description']) : '',
 			(int) $rawData['latency'],
 			isset($rawData['favicon']) ? (string) $rawData['favicon'] : null
 		);
+	}
+
+	private static function readMessageOfTheDay(array $description): string
+	{
+		$messageOfTheDay = '';
+
+		if (isset($description['extra'])) {
+			foreach ($description['extra'] as $extra) {
+				if (isset($extra['extra'])) {
+					$messageOfTheDay .= self::readMessageOfTheDay($extra);
+				}
+				$messageOfTheDay .= ($extra['text'] ?? '');
+			}
+		}
+
+		return $messageOfTheDay . ($description['text'] ?? '');
 	}
 }
