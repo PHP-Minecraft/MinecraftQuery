@@ -265,9 +265,9 @@ class MinecraftQueryResolver
 			return;
 		}
 
-		$dnsRecord = @dns_get_record( '_minecraft._tcp.' . $this->host, DNS_SRV );
+		$dnsRecord = @dns_get_record('_minecraft._tcp.' . $this->host, DNS_SRV);
 
-		if (!$dnsRecord || empty($dnsRecord)) {
+		if (!$dnsRecord || count($dnsRecord) === 0) {
 			return;
 		}
 
