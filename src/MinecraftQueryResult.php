@@ -106,17 +106,18 @@ class MinecraftQueryResult
 
 	private static function readMessageOfTheDay(array $description): string
 	{
-		$messageOfTheDay = '';
+		$messages = [];
 
-		if (isset($description['extra'])) {
+		if (!empty($description['text'])) {
+			$messages[] = $description['text'];
+		}
+
+		if (!empty($description['extra'])) {
 			foreach ($description['extra'] as $extra) {
-				if (isset($extra['extra'])) {
-					$messageOfTheDay = self::readMessageOfTheDay($extra) . $messageOfTheDay;
-				}
-				$messageOfTheDay = ($extra['text'] ?? '') . $messageOfTheDay;
+				$messages[] = self::readMessageOfTheDay($extra);
 			}
 		}
 
-		return $messageOfTheDay;
+		return implode('', $messages);
 	}
 }
