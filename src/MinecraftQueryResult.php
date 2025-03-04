@@ -114,7 +114,7 @@ class MinecraftQueryResult
 
 		if (!empty($description['extra'])) {
 			foreach ($description['extra'] as $extra) {
-				$messages[] = self::readMessageOfTheDay($extra);
+				$messages[] = self::readMessageOfTheDay(is_string($extra) ? ['text' => $extra] : $extra);
 			}
 		}
 
