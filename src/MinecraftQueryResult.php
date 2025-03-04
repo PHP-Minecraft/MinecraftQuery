@@ -108,11 +108,11 @@ class MinecraftQueryResult
 	{
 		$messages = [];
 
-		if (!empty($description['text'])) {
+		if (isset($description['text']) && is_string($description['text'])) {
 			$messages[] = $description['text'];
 		}
 
-		if (!empty($description['extra'])) {
+		if (isset($description['extra']) && is_array($description['extra'])) {
 			foreach ($description['extra'] as $extra) {
 				$messages[] = self::readMessageOfTheDay(!is_array($extra) ? ['text' => strval($extra)] : $extra);
 			}
