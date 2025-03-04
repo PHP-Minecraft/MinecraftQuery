@@ -111,12 +111,12 @@ class MinecraftQueryResult
 		if (isset($description['extra'])) {
 			foreach ($description['extra'] as $extra) {
 				if (isset($extra['extra'])) {
-					$messageOfTheDay .= self::readMessageOfTheDay($extra);
+					$messageOfTheDay = self::readMessageOfTheDay($extra) . $messageOfTheDay;
 				}
-				$messageOfTheDay .= ($extra['text'] ?? '');
+				$messageOfTheDay = ($extra['text'] ?? '') . $messageOfTheDay;
 			}
 		}
 
-		return $messageOfTheDay . ($description['text'] ?? '');
+		return $messageOfTheDay;
 	}
 }
